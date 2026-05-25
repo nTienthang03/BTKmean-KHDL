@@ -11,7 +11,7 @@
 ## Yêu cầu bài tập
 
 1. Mỗi sinh viên nộp **bảng điểm lớp** cho lớp trưởng.
-2. Sử dụng thuật toán **K-Means Clustering** để phân cụm lớp thành **3 nhóm học lực**.
+2. Sử dụng thuật toán **K-Means Clustering** để phân cụm lớp thành **3 nhóm **.
 3. Mỗi cá nhân nộp:
 
    * Link source code GitHub
