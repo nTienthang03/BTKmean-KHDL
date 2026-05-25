@@ -21,8 +21,7 @@
 
 ---
 
-# 1) Mục tiêu đề tài
-
+# 1) Tiêu Chí đặt ra 
 Xây dựng chương trình phân loại học lực sinh viên theo **GPA hệ 4** thành 3 nhóm:
 
 | Nhóm   | Điều kiện GPA   | Ý nghĩa              |
