@@ -1,16 +1,11 @@
-# BTKmean-KHDL
 
-# Kmean-HocLucK58KTP
+#  BÀI THỰC HÀNH
 
 ## Thông tin sinh viên
 
 * **Họ và tên:** Nguyễn Tiến Thắng
 * **MSSV:** K225480106058
 * **Lớp:** K58KTP
-
----
-
-# ĐỀ BÀI THỰC HÀNH
 
 ## Yêu cầu bài tập
 
