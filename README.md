@@ -1,1 +1,261 @@
 # BTKmean-KHDL
+
+# Kmean-HocLucK58KTP
+
+## Thông tin sinh viên
+
+* **Họ và tên:** Nguyễn Tiến Thắng
+* **MSSV:** K225480106058
+* **Lớp:** K58KTP
+
+---
+
+# ĐỀ BÀI THỰC HÀNH
+
+## Yêu cầu bài tập
+
+1. Mỗi sinh viên nộp **bảng điểm lớp** cho lớp trưởng.
+2. Sử dụng thuật toán **K-Means Clustering** để phân cụm lớp thành **3 nhóm học lực**.
+3. Mỗi cá nhân nộp:
+
+   * Link source code GitHub
+   * Video chạy chương trình
+   * Link video YouTube phải được đính kèm trong GitHub README
+
+
+---
+
+# 1) Mục tiêu đề tài
+
+Xây dựng chương trình phân loại học lực sinh viên theo **GPA hệ 4** thành 3 nhóm:
+
+| Nhóm   | Điều kiện GPA   | Ý nghĩa              |
+| ------ | --------------- | -------------------- |
+| Nhóm 1 | GPA ≥ 3.2       | Sinh viên học tốt    |
+| Nhóm 2 | 2.5 ≤ GPA < 3.2 | Sinh viên ổn định    |
+| Nhóm 3 | GPA < 2.5       | Sinh viên cần hỗ trợ |
+
+Ngoài việc phân loại theo ngưỡng GPA, chương trình còn sử dụng thuật toán:
+
+```text
+K-Means Clustering (K = 3)
+```
+
+để minh hoạ quá trình phân cụm dữ liệu sinh viên theo GPA.
+
+---
+
+# 2) Dữ liệu đầu vào
+
+File dữ liệu được đặt tại:
+
+```text
+data/TỔNG HỢP ĐIỂM K58KTP.xlsx
+```
+
+Chương trình hỗ trợ 2 kiểu dữ liệu Excel:
+
+---
+
+## (A) Dạng bảng GPA
+
+Nếu file có cột:
+
+```text
+Điểm TK (4)
+```
+
+thì chương trình sẽ đọc trực tiếp GPA của từng sinh viên.
+
+---
+
+## (B) Dạng ma trận điểm môn học
+
+Nếu không tồn tại cột GPA, chương trình sẽ tự động:
+
+* Nhận diện danh sách sinh viên
+* Trích xuất điểm từng môn
+* Tính GPA trung bình hệ 4
+
+Dữ liệu có cấu trúc:
+
+```text
+STT | Mã môn | Tên môn học | Điểm sinh viên
+```
+
+Công thức tính:
+
+[
+GPA = mean(các\ môn\ hệ\ 4)
+]
+
+Các ô trống sẽ được bỏ qua.
+
+---
+
+# 3) Xử lý lỗi dữ liệu Excel 
+- Lý do: Khi copy điểm từ web https://portal.tnut.edu.vn/ rồi paste vào Excel, dữ liệu có thể giữ nguyên định dạng cũ, khiến một số điểm bị chuyển từ kiểu Number sang kiểu Date. vậy nên code canf thêm mục xử lý dữ liệu .
+
+<img width="296" height="251" alt="image" src="https://github.com/user-attachments/assets/0fee79ad-7c52-4ec7-8a28-836d45201797" />
+
+
+Trong quá trình nhập liệu, Excel đôi khi tự động chuyển:
+
+```text
+3.5 → 03/05/2026
+3.7 → 07/03/2026
+```
+
+khiến pandas đọc thành kiểu ngày tháng.
+
+Chương trình đã xử lý bằng cách:
+
+* Kiểm tra kiểu dữ liệu DateTime
+* Suy ngược lại điểm theo:
+
+  * day/month
+  * month/day
+* Chỉ chấp nhận giá trị hợp lệ trong khoảng:
+
+```text
+0 → 4
+```
+
+Ví dụ:
+
+```text
+03/05/2026 → 3.5
+07/03/2026 → 3.7
+```
+
+---
+
+# 4) Thuật toán sử dụng
+
+
+Ý tưởng chính là: **lấy GPA hệ 4 cho từng sinh viên** (đọc trực tiếp hoặc tự tính từ ma trận điểm), sau đó **chia 3 nhóm theo ngưỡng GPA**.
+
+### 4.1. Các bước xử lý
+
+1. Xác định đường dẫn dự án, đọc file Excel đầu vào trong `data/`.
+2. Thử đọc theo **dạng bảng**:
+   - Tự dò dòng tiêu đề để tìm cột `Điểm TK (4)`.
+   - Nếu có cột này: chuẩn hoá giá trị GPA (đổi dấu phẩy, bỏ ký tự lạ, xử lý lỗi “điểm bị đọc thành ngày”).
+3. Nếu **không có cột `Điểm TK (4)`** thì chuyển sang **dạng ma trận**:
+   - Tìm hàng có nhãn `MSSV` để xác định các cột sinh viên.
+   - Tìm hàng có chữ `Tên` để lấy tên sinh viên.
+   - Tìm vùng môn học theo tiêu đề `STT | Mã Môn học | Tên Môn học`.
+   - Lấy các dòng môn học (bỏ qua một số mã môn không tính GPA theo cấu hình), rồi đọc ma trận điểm.
+   - Chuẩn hoá từng ô điểm về số thực trong [0, 4], sau đó tính GPA cho mỗi sinh viên bằng trung bình các môn (bỏ qua ô trống).
+4. Làm tròn GPA 2 chữ số thập phân.
+5. (Minh hoạ) Chạy **K-Means (K=3)** trên 1 biến GPA để “phân cụm” dữ liệu.
+6. Chia nhóm **theo ngưỡng GPA của đề bài**:
+   - Nhóm 1 nếu GPA ≥ 3.2
+   - Nhóm 2 nếu 2.5 ≤ GPA < 3.2
+   - Nhóm 3 nếu GPA < 2.5
+7. Xuất kết quả:
+   - 3 file Excel theo từng nhóm vào `output/`.
+   - 1 biểu đồ scatter GPA theo STT (nếu có) và vẽ 2 đường ngưỡng 3.2, 2.5.
+---
+
+# 5) Kết quả đầu ra
+
+Sau khi chạy chương trình, thư mục `output/` sẽ được tạo:
+
+```text
+output/
+```
+
+Bao gồm:
+
+```text
+nhom_1_sinh_vien_hoc_tot.xlsx
+nhom_2_sinh_vien_on_dinh.xlsx
+nhom_3_sinh_vien_can_ho_tro.xlsx
+bieu_do_phan_cum.png
+```
+
+---
+
+# 6) Cấu trúc thư mục dự án
+
+```text
+Kmean-HocLucK58KTP/
+├── data/
+│   └── TỔNG HỢP ĐIỂM K58KTP.xlsx
+│
+├── output/
+│   ├── nhom_1_sinh_vien_hoc_tot.xlsx
+│   ├── nhom_2_sinh_vien_on_dinh.xlsx
+│   ├── nhom_3_sinh_vien_can_ho_tro.xlsx
+│   └── bieu_do_phan_cum.png
+│
+├── src/
+│   └── kmean.py
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+# 7) Cài đặt môi trường
+
+## Bước 1 — Tạo môi trường ảo
+
+```bash
+python -m venv venv
+```
+
+---
+
+## Bước 2 — Kích hoạt môi trường
+
+### Windows PowerShell
+
+```bash
+.\venv\Scripts\Activate
+```
+
+---
+
+## Bước 3 — Cài thư viện
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# 8) Chạy chương trình
+
+```bash
+python src/kmean.py
+```
+
+Hoặc:
+
+```bash
+.\venv\Scripts\Activate; python .\src\kmean.py
+```
+
+---
+
+# 9) Kết quả hiển thị
+
+Terminal sẽ hiển thị:
+
+```text
+Số sinh viên nhóm học tốt
+Số sinh viên nhóm ổn định
+Số sinh viên cần hỗ trợ
+```
+
+Đồng thời sinh biểu đồ phân cụm GPA.
+
+---
+
+
+
+
