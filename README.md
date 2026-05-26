@@ -156,7 +156,7 @@ Gần chuẩn rồi, nhưng có vài chỗ nên sửa để đúng ký hiệu to
 
 ---
 
-### 3.2. Công thức (để thuyết trình)
+### 4.2Công thức sử dụng
 
 ## (1) Tính GPA từ ma trận điểm theo môn
 
