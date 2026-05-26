@@ -1,5 +1,5 @@
 
-#  BÀI THỰC HÀNH 
+#  BÀI THỰC HÀNH buổi 02 KHOA HỌC DỮ LIỆU
  Link youtube : 
 
 ## Thông tin sinh viên
