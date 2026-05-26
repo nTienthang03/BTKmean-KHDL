@@ -39,7 +39,28 @@ K-Means Clustering (K = 3)
 để minh hoạ quá trình phân cụm dữ liệu sinh viên theo GPA.
 
 ---
+#  Cấu trúc thư mục dự án
 
+```text
+Kmean-HocLucK58KTP/
+├── data/
+│   └── TỔNG HỢP ĐIỂM K58KTP.xlsx
+│
+├── output/
+│   ├── nhom_1_sinh_vien_hoc_tot.xlsx
+│   ├── nhom_2_sinh_vien_on_dinh.xlsx
+│   ├── nhom_3_sinh_vien_can_ho_tro.xlsx
+│   └── bieu_do_phan_cum.png
+│
+├── src/
+│   └── kmean.py
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
 # 2) Dữ liệu đầu vào
 
 File dữ liệu được đặt tại:
@@ -245,28 +266,7 @@ bieu_do_phan_cum.png
 
 ---
 
-# 6) Cấu trúc thư mục dự án
 
-```text
-Kmean-HocLucK58KTP/
-├── data/
-│   └── TỔNG HỢP ĐIỂM K58KTP.xlsx
-│
-├── output/
-│   ├── nhom_1_sinh_vien_hoc_tot.xlsx
-│   ├── nhom_2_sinh_vien_on_dinh.xlsx
-│   ├── nhom_3_sinh_vien_can_ho_tro.xlsx
-│   └── bieu_do_phan_cum.png
-│
-├── src/
-│   └── kmean.py
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
-
----
 
 # 7) Cài đặt môi trường
 
