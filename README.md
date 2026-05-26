@@ -1,6 +1,6 @@
 
 #  BÀI THỰC HÀNH buổi 02 KHOA HỌC DỮ LIỆU
- Link youtube : 
+ Link youtube : https://youtu.be/9B21k0ccK_w
 
 ## Thông tin sinh viên
 
