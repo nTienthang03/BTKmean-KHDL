@@ -152,6 +152,82 @@ Ví dụ:
    - 3 file Excel theo từng nhóm vào `output/`.
    - 1 biểu đồ scatter GPA theo STT (nếu có) và vẽ 2 đường ngưỡng 3.2, 2.5.
 ---
+Gần chuẩn rồi, nhưng có vài chỗ nên sửa để đúng ký hiệu toán và dễ thuyết trình hơn:
+
+---
+
+### 3.2. Công thức (để thuyết trình)
+
+## (1) Tính GPA từ ma trận điểm theo môn
+
+Gọi ( g_{i,c} ) là điểm hệ 4 của sinh viên ( i ) ở môn ( c ).
+
+Nếu sinh viên ( i ) có ( m_i ) môn hợp lệ (không rỗng, không bị loại theo danh sách mã môn), thì:
+
+[
+\text{GPA}*i = \frac{1}{m_i} \sum*{c \in C_i} g_{i,c}
+]
+
+Trong đó:
+
+* ( C_i ): tập các môn hợp lệ của sinh viên ( i )
+* ( m_i = |C_i| ): số môn hợp lệ
+
+---
+
+## (2) K-Means (minh hoạ, không dùng để chia nhóm cuối)
+
+Với dữ liệu đầu vào ( x_i ) (ở đây ( x_i = \text{GPA}_i )), K-Means tìm ( k ) tâm cụm ( \mu_1,\mu_2,\dots,\mu_k ) sao cho hàm mục tiêu nhỏ nhất:
+
+[
+\min_{{\mu_j}} \sum_{i=1}^{n} \min_{j \in {1,\dots,k}} |x_i - \mu_j|^2
+]
+
+Hai bước lặp cơ bản:
+
+### • Gán cụm (Assignment)
+
+[
+c_i = \arg\min_{j \in {1,\dots,k}} |x_i - \mu_j|^2
+]
+
+Trong đó ( c_i ) là cụm của sinh viên ( i ).
+
+### • Cập nhật tâm cụm (Update centroid)
+
+[
+\mu_j = \frac{1}{|S_j|} \sum_{i \in S_j} x_i
+]
+
+Trong đó:
+
+[
+S_j = { i \mid c_i = j }
+]
+
+là tập các phần tử thuộc cụm ( j ).
+
+---
+
+## (3) Chia nhóm theo ngưỡng (kết quả chính của bài)
+
+[
+\text{Nhóm}(\text{GPA}) =
+\begin{cases}
+1, & \text{GPA} \ge 3.2 \
+2, & 2.5 \le \text{GPA} < 3.2 \
+3, & \text{GPA} < 2.5
+\end{cases}
+]
+
+Trong đó:
+
+* Nhóm 1: Sinh viên học tốt
+* Nhóm 2: Sinh viên ổn định
+* Nhóm 3: Sinh viên cần hỗ trợ
+
+---
+
 
 # 5) Kết quả đầu ra
 
