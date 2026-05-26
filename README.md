@@ -91,7 +91,7 @@ Các ô trống sẽ được bỏ qua.
 # 3) Xử lý lỗi dữ liệu Excel 
 - Lý do: Khi copy điểm từ web https://portal.tnut.edu.vn/ rồi paste vào Excel, dữ liệu có thể giữ nguyên định dạng cũ, khiến một số điểm bị chuyển từ kiểu Number sang kiểu Date. vậy nên code canf thêm mục xử lý dữ liệu .
 
-<img width="296" height="251" alt="image" src="https://github.com/user-attachments/assets/0fee79ad-7c52-4ec7-8a28-836d45201797" />
+<img width="1342" height="660" alt="image" src="https://github.com/user-attachments/assets/7179939c-887f-4f6c-bc3b-e0ad1554100a" />
 
 
 Trong quá trình nhập liệu, Excel đôi khi tự động chuyển:
