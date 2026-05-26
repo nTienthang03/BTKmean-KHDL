@@ -311,17 +311,10 @@ Hoặc:
 
 # 9) Kết quả hiển thị
 
-Terminal sẽ hiển thị:
+ Biểu đồ phân cụm GPA.
+<img width="3000" height="1800" alt="bieu_do_phan_cum" src="https://github.com/user-attachments/assets/1b0f8fce-b6ed-4074-99ca-a863450d6663" />
 
-```text
-Số sinh viên nhóm học tốt
-Số sinh viên nhóm ổn định
-Số sinh viên cần hỗ trợ
-```
 
-Đồng thời sinh biểu đồ phân cụm GPA.
-
----
 
 
 
