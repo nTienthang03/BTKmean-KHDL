@@ -57,7 +57,6 @@ Kmean-HocLucK58KTP/
 │
 ├── requirements.txt
 ├── README.md
-└── .gitignore
 ```
 
 ---
